@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: id
+
+collections:
+  - name: "ayarlar"
+    label: "Genel Ayarlar"
+    files:
+      - name: "site"
+        label: "Hero Bölümü"
+        file: "_data/site.json"
+        fields:
+          - {label: "Hero Başlık", name: "hero_title", widget: "string"}
+          - {label: "Hero Alt Metin", name: "hero_subtitle", widget: "text"}
+          - {label: "WhatsApp Numarası", name: "wa_number", widget: "string"}
