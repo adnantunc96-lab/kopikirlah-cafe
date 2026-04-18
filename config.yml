@@ -1,0 +1,98 @@
+# ─────────────────────────────────────────────
+# Decap CMS — Kopikirlah Cafe
+# ─────────────────────────────────────────────
+
+backend:
+  name: git-gateway
+  branch: main            # Netlify'da kullandığın branch (main veya master)
+
+# Medya dosyaları (görseller) nereye yüklensin
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: id   # Arayüz dili: Endonezce
+
+# ─────────────────────────────────────────────
+# KOLEKSIYONLAR
+# ─────────────────────────────────────────────
+collections:
+
+  # ── 1. GENEL AYARLAR (Hero, WA, SEO) ──────
+  - name: "ayarlar"
+    label: "⚙️ Genel Ayarlar"
+    files:
+
+      - name: "site"
+        label: "Site & Hero Bölümü"
+        file: "_data/site.json"
+        fields:
+          - { label: "Site Başlığı",       name: "site_title",    widget: "string",   default: "Kopikirlah Cafe" }
+          - { label: "Meta Açıklaması",     name: "meta_desc",     widget: "text",     default: "Cafe di Singaraja, Bali" }
+          - { label: "Hero — Badge Metni",  name: "hero_badge",    widget: "string",   default: "✦ Singaraja, Bali ✦" }
+          - { label: "Hero — Ana Başlık",   name: "hero_title",    widget: "string",   default: "Kopikirlah Cafe" }
+          - { label: "Hero — Alt Metin",    name: "hero_subtitle", widget: "text",     default: "Di jantung kota Singaraja, tempat kopi terbaik bertemu suasana modern." }
+          - { label: "Hero — Buton 1 Metni", name: "hero_btn1",   widget: "string",   default: "Lihat Menu Lengkap" }
+          - { label: "Hero — Buton 2 Metni", name: "hero_btn2",   widget: "string",   default: "Lokasi Kami" }
+
+      - name: "whatsapp"
+        label: "📱 WhatsApp Ayarları"
+        file: "_data/whatsapp.json"
+        fields:
+          - { label: "WhatsApp Numarası (Uluslararası, örn: 628138251901)", name: "wa_number", widget: "string", default: "628138251901" }
+          - { label: "Görünen Numara (örn: +62 813-8251-901)",              name: "wa_display", widget: "string", default: "+62 813-8251-901" }
+          - { label: "Başlık",        name: "wa_title",   widget: "string", default: "Pesan Langsung via WhatsApp" }
+          - { label: "Açıklama",      name: "wa_desc",    widget: "text",   default: "Kami menerima pesanan melalui WhatsApp setiap hari." }
+          - { label: "Buton Metni",   name: "wa_btn",     widget: "string", default: "Chat WhatsApp" }
+          - { label: "Ücretsiz Kurye Badge'i göster?", name: "show_free_delivery", widget: "boolean", default: true }
+
+      - name: "lokasi"
+        label: "📍 Lokasyon Bilgileri"
+        file: "_data/lokasi.json"
+        fields:
+          - { label: "Adres Satır 1",    name: "address1",       widget: "string", default: "Jl. Sri Kandi, Sambangan" }
+          - { label: "Adres Satır 2",    name: "address2",       widget: "string", default: "Kec. Sukasada, Kab. Buleleng, Bali" }
+          - { label: "Google Maps CID veya URL", name: "maps_url", widget: "string", default: "https://maps.google.com/?cid=13490423228644649994" }
+          - { label: "Google Rating",    name: "rating",         widget: "string", default: "5.0 / 5.0" }
+          - { label: "Rating Yorumu",    name: "rating_quote",   widget: "string", default: "Cool vibes, good music, coffee great taste" }
+          - { label: "Instagram URL",    name: "instagram_url",  widget: "string", default: "https://www.instagram.com/kopikirlahcafe/" }
+          - { label: "TikTok URL",       name: "tiktok_url",     widget: "string", default: "https://www.tiktok.com/@kopikirlahcafe" }
+
+  # ── 2. MENU UNGGULAN (Öne Çıkan) ──────────
+  - name: "unggulan"
+    label: "⭐ Menu Unggulan"
+    folder: "_menu/unggulan"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{nama}} — Rp {{harga}}"
+    fields:
+      - { label: "Nama Menu",   name: "nama",        widget: "string" }
+      - { label: "Harga",       name: "harga",       widget: "string",   hint: "Contoh: 17.000 / 20.000 atau 15.000" }
+      - { label: "Deskripsi",   name: "deskripsi",   widget: "text" }
+      - { label: "Emoji / İkon", name: "emoji",      widget: "string",   default: "☕" }
+      - { label: "Urutan Tampil", name: "urutan",    widget: "number",   default: 1 }
+      - { label: "Tampilkan?",  name: "aktif",       widget: "boolean",  default: true }
+
+  # ── 3. MENU LENGKAP ────────────────────────
+  - name: "menu"
+    label: "🍽️ Menu Lengkap"
+    folder: "_menu/lengkap"
+    create: true
+    slug: "{{kategori}}-{{slug}}"
+    summary: "{{nama}} ({{kategori}}) — Rp {{harga_hot}}"
+    fields:
+      - label: "Kategori"
+        name: "kategori"
+        widget: "select"
+        options:
+          - { label: "☕ Espresso Base", value: "kopi" }
+          - { label: "🍵 Varian Tea",    value: "teh" }
+          - { label: "🥛 Milk Based",    value: "milk" }
+          - { label: "🍊 Juice Based",   value: "juice" }
+          - { label: "🍟 Snack Chill",   value: "snack" }
+          - { label: "🍽️ Makanan Berat", value: "berat" }
+          - { label: "🥪 Varian Snack",  value: "roti" }
+      - { label: "Nama Menu",          name: "nama",       widget: "string" }
+      - { label: "Harga Hot / Normal", name: "harga_hot",  widget: "string", hint: "Contoh: 17.000 — sadece hot/normal varsa" }
+      - { label: "Harga Ice / Cold",   name: "harga_ice",  widget: "string", hint: "Kosongkan jika tidak ada varian ice", required: false, default: "" }
+      - { label: "Urutan dalam kategori", name: "urutan",  widget: "number", default: 99 }
+      - { label: "Tampilkan?",         name: "aktif",      widget: "boolean", default: true }
