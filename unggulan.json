@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "emoji": "☕",
+      "nama": "Butterscotch Latte",
+      "harga": "17.000 / 20.000",
+      "deskripsi": "Latte dengan aroma karamel mentega dan vanila. Busa lembut, rasa sempurna.",
+      "foto": "",
+      "aktif": true
+    },
+    {
+      "emoji": "🧋",
+      "nama": "Oreo Milk Shake",
+      "harga": "15.000",
+      "deskripsi": "Milkshake creamy dengan potongan Oreo renyah. Segar di siang yang panas.",
+      "foto": "",
+      "aktif": true
+    },
+    {
+      "emoji": "🍽️",
+      "nama": "Nasi Goreng Seafood",
+      "harga": "15.000",
+      "deskripsi": "Seafood segar dengan bumbu rempah khas yang menggugah selera.",
+      "foto": "",
+      "aktif": true
+    },
+    {
+      "emoji": "🧇",
+      "nama": "Waffle Coklat Keju",
+      "harga": "17.500",
+      "deskripsi": "Waffle renyah, coklat leleh, dan keju. Camilan favorit semua kalangan.",
+      "foto": "",
+      "aktif": true
+    },
+    {
+      "emoji": "🍟",
+      "nama": "Mix Plater",
+      "harga": "25.000",
+      "deskripsi": "Kombinasi sausage, chicken nugget, dan french fries crispy. Pas untuk berbagi.",
+      "foto": "",
+      "aktif": true
+    },
+    {
+      "emoji": "🥑",
+      "nama": "Alpokat Juice",
+      "harga": "9.000",
+      "deskripsi": "Jus alpokat segar, tekstur creamy alami. Minuman sehat pilihan pelanggan setia.",
+      "foto": "",
+      "aktif": true
+    }
+  ]
+}
