@@ -1,0 +1,132 @@
+{
+  "kategoriler": [
+    {
+      "id": "kopi",
+      "label": "☕ Espresso Base",
+      "emoji": "☕",
+      "hot_ice": true,
+      "items": [
+        { "nama": "Latte", "harga_hot": "17.000", "harga_ice": "20.000", "aktif": true },
+        { "nama": "Cappucino", "harga_hot": "17.000", "harga_ice": "20.000", "aktif": true },
+        { "nama": "Americano", "harga_hot": "16.000", "harga_ice": "20.000", "aktif": true },
+        { "nama": "Espresso", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Vanilla Latte", "harga_hot": "17.000", "harga_ice": "20.000", "aktif": true },
+        { "nama": "Caramel Latte", "harga_hot": "17.000", "harga_ice": "20.000", "aktif": true },
+        { "nama": "Hazelnut Latte", "harga_hot": "18.000", "harga_ice": "20.000", "aktif": true },
+        { "nama": "Kopi Gula Aren", "harga_hot": "15.000", "harga_ice": "20.000", "aktif": true },
+        { "nama": "Butterscotch Latte", "harga_hot": "17.000", "harga_ice": "20.000", "aktif": true }
+      ]
+    },
+    {
+      "id": "teh",
+      "label": "🍵 Varian Tea",
+      "emoji": "🍵",
+      "hot_ice": true,
+      "items": [
+        { "nama": "Peach Tea", "harga_hot": "7.000", "harga_ice": "10.000", "aktif": true },
+        { "nama": "Lecy Tea", "harga_hot": "7.000", "harga_ice": "10.000", "aktif": true },
+        { "nama": "Lemon Tea", "harga_hot": "7.000", "harga_ice": "10.000", "aktif": true },
+        { "nama": "Teh Normal", "harga_hot": "5.000", "harga_ice": "8.000", "aktif": true }
+      ]
+    },
+    {
+      "id": "milk",
+      "label": "🥛 Milk Based",
+      "emoji": "🥛",
+      "hot_ice": true,
+      "items": [
+        { "nama": "Matcha", "harga_hot": "10.000", "harga_ice": "12.500", "aktif": true },
+        { "nama": "Red Velvet", "harga_hot": "10.000", "harga_ice": "12.500", "aktif": true },
+        { "nama": "Coklat", "harga_hot": "10.000", "harga_ice": "12.500", "aktif": true },
+        { "nama": "Milo", "harga_hot": "10.000", "harga_ice": "12.500", "aktif": true },
+        { "nama": "Stroberi Milk Shake", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Vanilla Milk Shake", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Chocolate Milk Shake", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Oreo Milk Shake", "harga_hot": "15.000", "harga_ice": "", "aktif": true }
+      ]
+    },
+    {
+      "id": "juice",
+      "label": "🍊 Juice Based",
+      "emoji": "🍊",
+      "hot_ice": false,
+      "items": [
+        { "nama": "Orange", "harga_hot": "8.500", "harga_ice": "", "aktif": true },
+        { "nama": "Pinapple", "harga_hot": "8.500", "harga_ice": "", "aktif": true },
+        { "nama": "Manggo", "harga_hot": "8.500", "harga_ice": "", "aktif": true },
+        { "nama": "Dragon Fruit", "harga_hot": "9.000", "harga_ice": "", "aktif": true },
+        { "nama": "Strawberry", "harga_hot": "9.000", "harga_ice": "", "aktif": true },
+        { "nama": "Alpokat Juice", "harga_hot": "9.000", "harga_ice": "", "aktif": true }
+      ]
+    },
+    {
+      "id": "snack",
+      "label": "🍟 Snack Chill",
+      "emoji": "🍟",
+      "hot_ice": false,
+      "items": [
+        { "nama": "French Fries (Original / BBQ / Cheese)", "harga_hot": "10.000", "harga_ice": "", "aktif": true },
+        { "nama": "Kofte Salad Potato", "harga_hot": "35.000", "harga_ice": "", "aktif": true },
+        { "nama": "Chicken Nugget", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Onion Rings", "harga_hot": "10.000", "harga_ice": "", "aktif": true },
+        { "nama": "Sausage", "harga_hot": "10.000", "harga_ice": "", "aktif": true },
+        { "nama": "Mix Plater (Sausage, Nugget, Fries)", "harga_hot": "25.000", "harga_ice": "", "aktif": true },
+        { "nama": "Jamur Crispy", "harga_hot": "10.000", "harga_ice": "", "aktif": true }
+      ]
+    },
+    {
+      "id": "berat",
+      "label": "🍽️ Makanan Berat",
+      "emoji": "🍽️",
+      "hot_ice": false,
+      "items": [
+        { "nama": "Nasi Goreng Biasa", "harga_hot": "10.000", "harga_ice": "", "aktif": true },
+        { "nama": "Nasi Goreng Ayam", "harga_hot": "12.500", "harga_ice": "", "aktif": true },
+        { "nama": "Nasi Goreng Seafood", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Mie Goreng Ayam", "harga_hot": "12.500", "harga_ice": "", "aktif": true },
+        { "nama": "Mie Goreng Seafood", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Mie Kuah Biasa", "harga_hot": "10.000", "harga_ice": "", "aktif": true },
+        { "nama": "Mie Kuah Telur", "harga_hot": "12.000", "harga_ice": "", "aktif": true },
+        { "nama": "Mie Kuah Sosis", "harga_hot": "13.500", "harga_ice": "", "aktif": true },
+        { "nama": "Mie Kuah Komplit", "harga_hot": "15.000", "harga_ice": "", "aktif": true }
+      ]
+    },
+    {
+      "id": "cina",
+      "label": "🥢 Makanan Cina",
+      "emoji": "🥢",
+      "hot_ice": false,
+      "items": [
+        { "nama": "Ayam Goreng Saus Mentega", "harga_hot": "20.000", "harga_ice": "", "aktif": true },
+        { "nama": "Kwetiau Goreng", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Ayam Cay Stamp", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Fuyunghai", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Ayam Goreng Saus Kecap", "harga_hot": "20.000", "harga_ice": "", "aktif": true }
+      ]
+    },
+    {
+      "id": "roti",
+      "label": "🥪 Varian Snack",
+      "emoji": "🥪",
+      "hot_ice": false,
+      "items": [
+        { "nama": "Roti Bakar Coklat Keju Susu", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Coklat Susu", "harga_hot": "12.500", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Keju Susu", "harga_hot": "12.500", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Selai", "harga_hot": "12.500", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Coco Crunchy", "harga_hot": "13.000", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Tiramisu", "harga_hot": "14.000", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Keju Kornet", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Telur Keju", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Roti Bakar Kornet", "harga_hot": "13.000", "harga_ice": "", "aktif": true },
+        { "nama": "Pisang Coklat Keju", "harga_hot": "10.000", "harga_ice": "", "aktif": true },
+        { "nama": "Pisang Keju Susu", "harga_hot": "10.000", "harga_ice": "", "aktif": true },
+        { "nama": "Waffle Keju", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Waffle Coklat", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Waffle Coklat Keju", "harga_hot": "17.500", "harga_ice": "", "aktif": true },
+        { "nama": "Waffle Strawberry", "harga_hot": "15.000", "harga_ice": "", "aktif": true },
+        { "nama": "Waffle Original", "harga_hot": "12.500", "harga_ice": "", "aktif": true }
+      ]
+    }
+  ]
+}
