@@ -589,7 +589,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 <script>
 // ========== DATA ==========
 var DATA = {
-  credentials: { user: 'admin', pass: 'kopikirlah2024' },
+  credentials: { user: 'adnan', pass: 'adnan123' },
   hero: {
     badge: '✦ Singaraja, Bali ✦',
     h1: 'Kopikirlah',
@@ -1007,26 +1007,17 @@ function changePassword() {
   DATA.credentials.pass = newP;
   saveData();
   msg.style.color='#4ade80';
-  msg.textContent='Kredensial berhasil diubah!';
+  msg.textContent='✓ Berhasil! File HTML baru sedang diunduh — upload ke GitHub untuk perubahan permanen.';
   document.getElementById('f-old-pass').value='';
   document.getElementById('f-new-pass').value='';
   document.getElementById('f-confirm-pass').value='';
+  downloadUpdatedHTML();
 }
 
-function showToast() {
-  var t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 3000);
-}
-
-function escHtml(str) {
-  if(!str) return '';
-  return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// ========== INIT ==========
-loadData();
-renderSite();
-</script>
-</body>
-</html>
+function downloadUpdatedHTML() {
+  var html = document.documentElement.outerHTML;
+  var newUser = DATA.credentials.user;
+  var newPass = DATA.credentials.pass;
+  html = html.replace(
+    /credentials:\s*\{\s*user:\s*'[^']*',\s*pass:\s*'[^']*'\s*\}/,
+    "credentials: { user: '" + newUser + "', pass: '" + newPass 
