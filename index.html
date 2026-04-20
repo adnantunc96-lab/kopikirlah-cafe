@@ -1,108 +1,1032 @@
-# ─────────────────────────────────────────────
-# Decap CMS — Kopikirlah Cafe
-# ─────────────────────────────────────────────
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kopikirlah Cafe – Singaraja, Bali</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #B87A20;
+  --gold-light: #E8C97A;
+  --gold-pale: #FFF8EC;
+  --dark: #1C1209;
+  --text: #2E1F0F;
+  --muted: #7A6655;
+  --bg: #FDFAF5;
+  --surface: #F5F0E8;
+  --white: #FFFFFF;
+  --green: #25D366;
+  --radius: 12px;
+  --radius-lg: 18px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-backend:
-  name: git-gateway
-  branch: main
+/* HEADER */
+.header { position: sticky; top: 0; z-index: 200; background: rgba(253,250,245,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(184,122,32,0.15); padding: 0 5%; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--dark); cursor: pointer; letter-spacing: 0.02em; }
+.logo span { color: var(--gold); }
+.nav { display: flex; gap: 8px; align-items: center; }
+.nav-btn { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; padding: 7px 16px; border-radius: 50px; border: 1px solid rgba(184,122,32,0.3); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+.nav-btn:hover, .nav-btn.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+.icon-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(184,122,32,0.25); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; color: var(--muted); transition: all 0.2s; }
+.icon-btn:hover { background: var(--gold-pale); color: var(--gold); border-color: var(--gold); }
+.icon-btn svg { width: 17px; height: 17px; }
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+/* PAGES */
+.page { display: none; }
+.page.active { display: block; }
 
-locale: id
+/* HERO */
+.hero { padding: 80px 5% 70px; text-align: center; background: linear-gradient(170deg, var(--dark) 0%, #3A2010 100%); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(184,122,32,0.2) 0%, transparent 65%); pointer-events: none; }
+.hero-badge { display: inline-block; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); font-weight: 500; border: 1px solid rgba(232,201,122,0.35); padding: 5px 16px; border-radius: 50px; margin-bottom: 1.5rem; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 1rem; }
+.hero h1 em { color: var(--gold-light); font-style: normal; }
+.hero p { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 2rem; line-height: 1.8; }
+.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; padding: 12px 28px; border-radius: 50px; background: var(--gold); color: #fff; border: none; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 20px rgba(184,122,32,0.35); }
+.btn-primary:hover { background: #9A6618; transform: translateY(-1px); }
+.btn-outline { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; padding: 12px 28px; border-radius: 50px; background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.25s; }
+.btn-outline:hover { background: rgba(255,255,255,0.08); }
 
-# ─────────────────────────────────────────────
-# KOLEKSIYONLAR
-# ─────────────────────────────────────────────
+/* SECTIONS */
+.section { padding: 60px 5%; border-bottom: 1px solid rgba(184,122,32,0.1); }
+.section-alt { background: var(--surface); }
+.sec-label { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 6px; }
+.sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+.sec-divider { width: 40px; height: 2px; background: var(--gold); margin-bottom: 32px; }
 
-collections:
+/* FEATURED CARDS */
+.featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.feat-card { background: var(--white); border: 1px solid rgba(184,122,32,0.12); border-radius: var(--radius-lg); padding: 24px; transition: all 0.25s; }
+.feat-card:hover { box-shadow: 0 8px 32px rgba(184,122,32,0.12); transform: translateY(-2px); }
+.feat-icon { font-size: 2rem; margin-bottom: 12px; }
+.feat-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+.feat-price { font-size: 0.85rem; color: var(--gold); font-weight: 500; margin-bottom: 8px; }
+.feat-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
-  # ── 1. GENEL AYARLAR ──────────────────────
-  - name: "ayarlar"
-    label: "⚙️ Genel Ayarlar"
-    files:
+/* WA SECTION */
+.wa-section { background: linear-gradient(135deg, var(--dark) 0%, #3A2010 100%); padding: 48px 5%; }
+.wa-card { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.wa-icon-wrap { width: 56px; height: 56px; border-radius: 50%; background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.wa-icon-wrap svg { width: 28px; height: 28px; fill: var(--green); }
+.wa-body { flex: 1; min-width: 200px; }
+.wa-body h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; margin-bottom: 6px; }
+.wa-body p { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.wa-num { font-size: 1rem !important; color: var(--gold-light) !important; font-weight: 500; }
+.wa-badges { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.wa-badge { font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 50px; }
+.wa-badge.green { background: rgba(37,211,102,0.15); color: #4ade80; border: 1px solid rgba(37,211,102,0.25); }
+.wa-badge.gold { background: rgba(184,122,32,0.2); color: var(--gold-light); border: 1px solid rgba(184,122,32,0.3); }
+.wa-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; font-size: 0.85rem; font-weight: 500; padding: 12px 22px; border-radius: 50px; text-decoration: none; transition: all 0.2s; flex-shrink: 0; }
+.wa-cta svg { width: 18px; height: 18px; fill: #fff; }
+.wa-cta:hover { background: #1aad50; }
 
-      - name: "site"
-        label: "🏠 Site & Hero Bölümü"
-        file: "site.json"
-        fields:
-          - { label: "Site Başlığı", name: "site_title", widget: "string" }
-          - { label: "Meta Açıklaması", name: "meta_desc", widget: "text" }
-          - { label: "Hero Badge Metni", name: "hero_badge", widget: "string" }
-          - { label: "Hero Ana Başlık", name: "hero_title", widget: "string" }
-          - { label: "Hero Alt Metin", name: "hero_subtitle", widget: "text" }
-          - { label: "Buton 1 Metni", name: "hero_btn1", widget: "string" }
-          - { label: "Buton 2 Metni", name: "hero_btn2", widget: "string" }
+/* MENU PAGE */
+.menu-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.tab { font-size: 0.8rem; font-weight: 500; padding: 6px 14px; border-radius: 50px; border: 1px solid rgba(184,122,32,0.25); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+.tab:hover, .tab.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+.menu-card { background: var(--white); border: 1px solid rgba(184,122,32,0.1); border-radius: var(--radius); margin-bottom: 20px; overflow: hidden; }
+.menu-card.hidden { display: none; }
+.menu-cat-header { background: var(--surface); padding: 12px 20px; border-bottom: 1px solid rgba(184,122,32,0.1); }
+.menu-cat-header h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark); }
+.menu-table { width: 100%; padding: 8px 0; }
+.mrow { display: flex; align-items: center; padding: 8px 20px; gap: 12px; }
+.mrow:hover { background: var(--gold-pale); }
+.mrow-name { flex: 1; font-size: 0.88rem; color: var(--text); }
+.mrow-price { font-size: 0.82rem; color: var(--muted); min-width: 60px; text-align: right; }
+.mrow-price.r { color: var(--gold); font-weight: 500; }
+.mrow.s { border-bottom: 1px solid rgba(184,122,32,0.06); }
+.price-header { display: flex; gap: 12px; padding: 6px 20px; background: rgba(184,122,32,0.06); }
+.price-header span { font-size: 0.72rem; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
+.ph-name { flex: 1; }
+.ph-hot, .ph-ice { min-width: 60px; text-align: right; }
 
-      - name: "whatsapp"
-        label: "📱 WhatsApp Ayarları"
-        file: "whatsapp.json"
-        fields:
-          - { label: "WhatsApp Numarası (örn: 628138251901)", name: "wa_number", widget: "string" }
-          - { label: "Görünen Numara (örn: +62 813-8251-901)", name: "wa_display", widget: "string" }
-          - { label: "Başlık", name: "wa_title", widget: "string" }
-          - { label: "Açıklama", name: "wa_desc", widget: "text" }
-          - { label: "Buton Metni", name: "wa_btn", widget: "string" }
+/* LOKASI */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.info-card { background: var(--white); border: 1px solid rgba(184,122,32,0.12); border-radius: var(--radius); padding: 20px; display: flex; gap: 14px; align-items: flex-start; }
+.info-icon { font-size: 1.4rem; flex-shrink: 0; }
+.info-text h4 { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--dark); margin-bottom: 4px; }
+.info-text p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+.info-text a { color: var(--gold); text-decoration: none; }
+.maps-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #fff; font-size: 0.88rem; font-weight: 500; padding: 12px 24px; border-radius: 50px; text-decoration: none; transition: all 0.2s; margin-top: 8px; }
+.maps-btn svg { width: 16px; height: 16px; }
+.maps-btn:hover { background: #9A6618; }
 
-      - name: "lokasi"
-        label: "📍 Lokasyon Bilgileri"
-        file: "lokasi.json"
-        fields:
-          - { label: "Adres Satır 1", name: "address1", widget: "string" }
-          - { label: "Adres Satır 2", name: "address2", widget: "string" }
-          - { label: "Google Maps URL", name: "maps_url", widget: "string" }
-          - { label: "Google Rating", name: "rating", widget: "string" }
-          - { label: "Rating Yorumu", name: "rating_quote", widget: "string" }
-          - { label: "Instagram URL", name: "instagram_url", widget: "string" }
-          - { label: "TikTok URL", name: "tiktok_url", widget: "string" }
+/* FOOTER */
+.footer { background: var(--dark); padding: 40px 5%; text-align: center; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 4px; }
+.footer-sub { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+.footer-socials { display: flex; justify-content: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+.footer-soc { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-soc:hover { color: var(--gold-light); }
+.footer-soc svg { width: 16px; height: 16px; }
+.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
 
-  # ── 2. MENU UNGGULAN ──────────────────────
-  - name: "unggulan"
-    label: "⭐ Menu Unggulan"
-    files:
-      - name: "unggulan"
-        label: "⭐ Menu Unggulan"
-        file: "unggulan.json"
-        fields:
-          - label: "Menu Unggulan"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Emoji", name: "emoji", widget: "string", default: "☕" }
-              - { label: "Nama Menu", name: "nama", widget: "string" }
-              - { label: "Harga (contoh: 17.000 / 20.000)", name: "harga", widget: "string" }
-              - { label: "Deskripsi", name: "deskripsi", widget: "text" }
-              - label: "Foto (opsional)"
-                name: "foto"
-                widget: "image"
-                required: false
-              - { label: "Tampilkan?", name: "aktif", widget: "boolean", default: true }
+/* ===================== ADMIN PANEL ===================== */
+#admin-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: #0f0a04; }
+#admin-overlay.show { display: flex; }
 
-  # ── 3. MENU LENGKAP ───────────────────────
-  - name: "menu"
-    label: "🍽️ Menu Lengkap"
-    files:
-      - name: "menu"
-        label: "🍽️ Semua Kategori Menu"
-        file: "menu.json"
-        fields:
-          - label: "Kategori"
-            name: "kategoriler"
-            widget: "list"
-            fields:
-              - { label: "ID Kategori", name: "id", widget: "string", hint: "Contoh: kopi, teh, milk, juice, snack, berat, cina, roti" }
-              - { label: "Label (dengan emoji)", name: "label", widget: "string", hint: "Contoh: ☕ Espresso Base" }
-              - { label: "Emoji", name: "emoji", widget: "string" }
-              - { label: "Ada varian Hot/Ice?", name: "hot_ice", widget: "boolean", default: false }
-              - label: "Item Menu"
-                name: "items"
-                widget: "list"
-                fields:
-                  - { label: "Nama Menu", name: "nama", widget: "string" }
-                  - { label: "Harga (Hot/Normal)", name: "harga_hot", widget: "string" }
-                  - { label: "Harga Ice (kosongkan jika tidak ada)", name: "harga_ice", widget: "string", required: false, default: "" }
-                  - label: "Foto (opsional)"
-                    name: "foto"
-                    widget: "image"
-                    required: false
-                  - { label: "Tampilkan?", name: "aktif", widget: "boolean", default: true }
+/* LOGIN */
+#admin-login { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.login-box { background: #1a1008; border: 1px solid rgba(184,122,32,0.2); border-radius: 20px; padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
+.login-logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin-bottom: 6px; }
+.login-logo span { color: var(--gold); }
+.login-sub { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 32px; }
+.login-input { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(184,122,32,0.2); border-radius: 10px; padding: 12px 16px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
+.login-input:focus { border-color: var(--gold); }
+.login-btn { width: 100%; background: var(--gold); color: #fff; border: none; border-radius: 10px; padding: 13px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.2s; margin-top: 4px; }
+.login-btn:hover { background: #9A6618; }
+.login-err { font-size: 0.8rem; color: #f87171; margin-top: 10px; display: none; }
+
+/* ADMIN DASHBOARD */
+#admin-dash { display: none; width: 100%; height: 100%; flex-direction: row; }
+#admin-dash.show { display: flex; }
+
+/* SIDEBAR */
+.adm-sidebar { width: 220px; flex-shrink: 0; background: #130c04; border-right: 1px solid rgba(184,122,32,0.15); display: flex; flex-direction: column; }
+.adm-logo { padding: 20px 20px 12px; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; border-bottom: 1px solid rgba(184,122,32,0.1); }
+.adm-logo span { color: var(--gold); }
+.adm-logo small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.3); font-weight: 400; margin-top: 2px; }
+.adm-nav { flex: 1; padding: 12px 8px; overflow-y: auto; }
+.adm-section-label { font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 8px 12px 4px; }
+.adm-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 0.83rem; transition: all 0.15s; margin-bottom: 2px; }
+.adm-item:hover { background: rgba(184,122,32,0.1); color: rgba(255,255,255,0.8); }
+.adm-item.active { background: rgba(184,122,32,0.18); color: var(--gold-light); }
+.adm-item-icon { font-size: 15px; width: 18px; text-align: center; }
+.adm-footer { padding: 12px 8px; border-top: 1px solid rgba(184,122,32,0.1); }
+.adm-close-btn { display: flex; align-items: center; gap: 8px; width: 100%; padding: 9px 12px; border-radius: 8px; background: transparent; border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+.adm-close-btn:hover { border-color: rgba(255,100,100,0.3); color: #f87171; }
+
+/* MAIN CONTENT */
+.adm-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.adm-topbar { padding: 0 24px; height: 56px; border-bottom: 1px solid rgba(184,122,32,0.1); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.adm-page-title { font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.85); }
+.adm-save-btn { background: var(--gold); color: #fff; border: none; border-radius: 8px; padding: 8px 20px; font-family: 'DM Sans', sans-serif; font-size: 0.83rem; font-weight: 500; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 7px; }
+.adm-save-btn:hover { background: #9A6618; }
+.adm-save-btn.saved { background: #16a34a; }
+.adm-content { flex: 1; overflow-y: auto; padding: 24px; }
+
+/* ADMIN PANELS */
+.adm-panel { display: none; }
+.adm-panel.active { display: block; }
+
+/* FORM ELEMENTS */
+.form-row { margin-bottom: 18px; }
+.form-label { font-size: 0.75rem; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-bottom: 6px; display: block; text-transform: uppercase; }
+.form-input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(184,122,32,0.2); border-radius: 8px; padding: 10px 14px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s; }
+.form-input:focus { border-color: var(--gold); background: rgba(184,122,32,0.06); }
+.form-textarea { min-height: 80px; resize: vertical; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.form-section { background: rgba(255,255,255,0.03); border: 1px solid rgba(184,122,32,0.12); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.form-section-title { font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+
+/* MENU ITEMS */
+.menu-item-row { background: rgba(255,255,255,0.03); border: 1px solid rgba(184,122,32,0.1); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.menu-item-emoji { width: 52px; }
+.menu-item-name { flex: 2; min-width: 120px; }
+.menu-item-price { flex: 1; min-width: 80px; }
+.menu-item-del { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2); border-radius: 6px; padding: 8px 12px; color: #f87171; cursor: pointer; font-size: 0.78rem; flex-shrink: 0; transition: all 0.2s; }
+.menu-item-del:hover { background: rgba(248,113,113,0.2); }
+.add-item-btn { display: flex; align-items: center; gap: 8px; background: rgba(184,122,32,0.08); border: 1px dashed rgba(184,122,32,0.3); border-radius: 10px; padding: 12px 16px; color: var(--gold); font-size: 0.83rem; cursor: pointer; transition: all 0.2s; width: 100%; justify-content: center; margin-top: 4px; }
+.add-item-btn:hover { background: rgba(184,122,32,0.15); }
+
+/* UNGGULAN ITEMS */
+.unggulan-row { background: rgba(255,255,255,0.03); border: 1px solid rgba(184,122,32,0.1); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+.unggulan-row-top { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ung-emoji { width: 52px; }
+.ung-name { flex: 2; min-width: 120px; }
+.ung-price { flex: 1; min-width: 100px; }
+.ung-del { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.2); border-radius: 6px; padding: 8px 12px; color: #f87171; cursor: pointer; font-size: 0.78rem; flex-shrink: 0; transition: all 0.2s; }
+.ung-del:hover { background: rgba(248,113,113,0.2); }
+.ung-desc { margin-top: 10px; }
+
+/* KATEGORI SECTION */
+.cat-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(184,122,32,0.08); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+.cat-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: rgba(184,122,32,0.06); cursor: pointer; }
+.cat-header-emoji { font-size: 1.1rem; }
+.cat-header-name { flex: 1; font-size: 0.88rem; color: rgba(255,255,255,0.8); }
+.cat-toggle { font-size: 0.7rem; color: rgba(255,255,255,0.3); transition: transform 0.2s; }
+.cat-toggle.open { transform: rotate(180deg); }
+.cat-body { padding: 12px 16px; display: none; }
+.cat-body.open { display: block; }
+.cat-has-variants { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.cat-has-variants label { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+.cat-has-variants input { accent-color: var(--gold); }
+
+/* TOAST */
+.toast { position: fixed; bottom: 24px; right: 24px; background: #16a34a; color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 0.85rem; z-index: 99999; display: none; align-items: center; gap: 8px; }
+.toast.show { display: flex; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(184,122,32,0.3); border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<!-- ===== MAIN SITE ===== -->
+<div id="site-wrapper">
+<header class="header">
+  <div class="logo" onclick="showPage('home')">Kopikirlah <span>Cafe</span></div>
+  <nav class="nav">
+    <button class="nav-btn" id="nav-menu" onclick="showPage('menu')">Menu</button>
+    <button class="nav-btn" id="nav-lokasi" onclick="showPage('lokasi')">Lokasi</button>
+    <button class="icon-btn" onclick="openAdmin()" title="Admin Panel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </button>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-badge" id="site-badge">✦ Singaraja, Bali ✦</div>
+    <h1 id="hero-h1-1">Kopikirlah <em id="hero-h1-em">Cafe</em></h1>
+    <p id="hero-desc">Di jantung kota Singaraja, tempat kopi terbaik bertemu suasana modern. Nikmati espresso segar dan milkshake spesial kami.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('menu')" id="hero-btn1">Lihat Menu Lengkap</button>
+      <button class="btn-outline" onclick="showPage('lokasi')" id="hero-btn2">Lokasi Kami</button>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="sec-label">Paling disukai</div>
+    <div class="sec-title">Menu Unggulan</div>
+    <div class="sec-divider"></div>
+    <div class="featured-grid" id="featured-grid"></div>
+  </div>
+
+  <div class="wa-section">
+    <div class="wa-card">
+      <div class="wa-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.845L.057 23.492a.5.5 0 0 0 .625.599l5.806-1.525A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.523-5.148-1.43l-.368-.223-3.812 1.001 1.018-3.714-.24-.382A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      </div>
+      <div class="wa-body">
+        <h3>Pesan Langsung via WhatsApp</h3>
+        <p>Kami menerima pesanan melalui WhatsApp setiap hari.</p>
+        <p class="wa-num" id="wa-display-num">+62 813-8251-901</p>
+        <div class="wa-badges">
+          <span class="wa-badge green">✓ Gratis Ongkir</span>
+          <span class="wa-badge green">✓ Pesan Mudah</span>
+          <span class="wa-badge gold">✦ Kurye Gratis</span>
+        </div>
+      </div>
+      <a href="#" class="wa-cta" id="wa-link-home">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.845L.057 23.492a.5.5 0 0 0 .625.599l5.806-1.525A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.523-5.148-1.43l-.368-.223-3.812 1.001 1.018-3.714-.24-.382A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Chat WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">Kopikirlah Cafe</div>
+    <p class="footer-sub">Singaraja, Bali</p>
+    <div class="footer-socials">
+      <a href="#" class="footer-soc" id="ig-link-footer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        <span id="ig-handle-footer">@kopikirlahcafe</span>
+      </a>
+      <a href="https://www.tiktok.com/@kopikirlahcafe" target="_blank" class="footer-soc">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        @kopikirlahcafe
+      </a>
+    </div>
+    <p class="footer-copy">© 2024 Kopikirlah Cafe. Semua hak dilindungi.</p>
+  </footer>
+</div>
+
+<!-- MENU PAGE -->
+<div class="page" id="page-menu">
+  <div class="section">
+    <div class="sec-label">Pilihan terbaik kami</div>
+    <div class="sec-title">Menu Kami</div>
+    <div class="sec-divider"></div>
+    <div class="menu-tabs" id="menu-tabs"></div>
+    <div id="menu-list"></div>
+  </div>
+  <div class="wa-section">
+    <div class="wa-card">
+      <div class="wa-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.845L.057 23.492a.5.5 0 0 0 .625.599l5.806-1.525A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.523-5.148-1.43l-.368-.223-3.812 1.001 1.018-3.714-.24-.382A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      </div>
+      <div class="wa-body">
+        <h3>Mau Pesan dari Rumah?</h3>
+        <p>Kirimkan pesanan lewat WhatsApp — gratis ongkir untuk semua area pengiriman!</p>
+        <p class="wa-num" id="wa-display-num2">+62 813-8251-901</p>
+        <div class="wa-badges">
+          <span class="wa-badge green">✓ Gratis Ongkir</span>
+          <span class="wa-badge gold">✦ Kurye Gratis</span>
+        </div>
+      </div>
+      <a href="#" class="wa-cta" id="wa-link-menu">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.845L.057 23.492a.5.5 0 0 0 .625.599l5.806-1.525A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.523-5.148-1.43l-.368-.223-3.812 1.001 1.018-3.714-.24-.382A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Pesan Sekarang
+      </a>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-logo">Kopikirlah Cafe</div>
+    <p class="footer-sub">Singaraja, Bali</p>
+    <div class="footer-socials">
+      <a href="#" class="footer-soc" id="ig-link-footer2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg><span id="ig-handle-footer2">@kopikirlahcafe</span></a>
+    </div>
+    <p class="footer-copy">© 2024 Kopikirlah Cafe. Semua hak dilindungi.</p>
+  </footer>
+</div>
+
+<!-- LOKASI PAGE -->
+<div class="page" id="page-lokasi">
+  <div class="section">
+    <div class="sec-label">Temukan kami</div>
+    <div class="sec-title">Lokasi Kami</div>
+    <div class="sec-divider"></div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div class="info-text"><h4>Alamat</h4><p id="lokasi-address">Jl. Sri Kandi, Sambangan,<br>Kec. Sukasada, Kab. Buleleng, Bali</p></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">⭐</div>
+        <div class="info-text"><h4>Rating Google</h4><p id="lokasi-rating">5.0 / 5.0<br>"Cool vibes, good music, coffee great taste"</p></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📷</div>
+        <div class="info-text"><h4>Instagram</h4><p><a href="#" id="ig-link-lokasi">@kopikirlahcafe</a></p></div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🎵</div>
+        <div class="info-text"><h4>TikTok</h4><p><a href="https://www.tiktok.com/@kopikirlahcafe" target="_blank">@kopikirlahcafe</a></p></div>
+      </div>
+    </div>
+    <a href="#" class="maps-btn" id="maps-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Buka di Google Maps
+    </a>
+  </div>
+  <div class="wa-section">
+    <div class="wa-card">
+      <div class="wa-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.845L.057 23.492a.5.5 0 0 0 .625.599l5.806-1.525A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.523-5.148-1.43l-.368-.223-3.812 1.001 1.018-3.714-.24-.382A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+      <div class="wa-body">
+        <h3>Tidak Bisa Datang Langsung?</h3>
+        <p>Pesan melalui WhatsApp dan kami antar ke lokasi Anda!</p>
+        <p class="wa-num" id="wa-display-num3">+62 813-8251-901</p>
+        <div class="wa-badges"><span class="wa-badge green">✓ Gratis Ongkir</span><span class="wa-badge gold">✦ Kurye Gratis</span></div>
+      </div>
+      <a href="#" class="wa-cta" id="wa-link-lokasi">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.845L.057 23.492a.5.5 0 0 0 .625.599l5.806-1.525A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.523-5.148-1.43l-.368-.223-3.812 1.001 1.018-3.714-.24-.382A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Chat WhatsApp
+      </a>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-logo">Kopikirlah Cafe</div>
+    <p class="footer-sub">Singaraja, Bali</p>
+    <div class="footer-socials">
+      <a href="#" class="footer-soc" id="ig-link-footer3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg><span id="ig-handle-footer3">@kopikirlahcafe</span></a>
+    </div>
+    <p class="footer-copy">© 2024 Kopikirlah Cafe. Semua hak dilindungi.</p>
+  </footer>
+</div>
+</div>
+
+<!-- ===== ADMIN OVERLAY ===== -->
+<div id="admin-overlay">
+  <!-- LOGIN -->
+  <div id="admin-login">
+    <div class="login-box">
+      <div class="login-logo">Kopikirlah <span>Admin</span></div>
+      <div class="login-sub">Panel pengelolaan konten website</div>
+      <input class="login-input" type="text" id="login-user" placeholder="Username" autocomplete="off">
+      <input class="login-input" type="password" id="login-pass" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="login-btn" onclick="doLogin()">Masuk ke Panel Admin</button>
+      <div class="login-err" id="login-err">Username atau password salah!</div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="admin-dash">
+    <div class="adm-sidebar">
+      <div class="adm-logo">Kopikirlah <span>Admin</span><small>Panel Pengelolaan</small></div>
+      <div class="adm-nav">
+        <div class="adm-section-label">Konten Utama</div>
+        <div class="adm-item active" onclick="showAdmPanel('hero')" id="adm-nav-hero">
+          <span class="adm-item-icon">🏠</span> Hero & Beranda
+        </div>
+        <div class="adm-item" onclick="showAdmPanel('whatsapp')" id="adm-nav-whatsapp">
+          <span class="adm-item-icon">💬</span> WhatsApp
+        </div>
+        <div class="adm-item" onclick="showAdmPanel('lokasi')" id="adm-nav-lokasi">
+          <span class="adm-item-icon">📍</span> Lokasi & Sosmed
+        </div>
+        <div class="adm-section-label" style="margin-top:8px;">Menu</div>
+        <div class="adm-item" onclick="showAdmPanel('unggulan')" id="adm-nav-unggulan">
+          <span class="adm-item-icon">⭐</span> Menu Unggulan
+        </div>
+        <div class="adm-item" onclick="showAdmPanel('menu')" id="adm-nav-menu">
+          <span class="adm-item-icon">📋</span> Menu Lengkap
+        </div>
+        <div class="adm-section-label" style="margin-top:8px;">Keamanan</div>
+        <div class="adm-item" onclick="showAdmPanel('password')" id="adm-nav-password">
+          <span class="adm-item-icon">🔐</span> Ubah Password
+        </div>
+      </div>
+      <div class="adm-footer">
+        <button class="adm-close-btn" onclick="closeAdmin()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          Keluar dari Admin
+        </button>
+      </div>
+    </div>
+
+    <div class="adm-main">
+      <div class="adm-topbar">
+        <div class="adm-page-title" id="adm-title">Hero & Beranda</div>
+        <button class="adm-save-btn" id="adm-save-btn" onclick="saveAll()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Simpan Perubahan
+        </button>
+      </div>
+      <div class="adm-content">
+
+        <!-- HERO PANEL -->
+        <div class="adm-panel active" id="panel-hero">
+          <div class="form-section">
+            <div class="form-section-title">Teks Hero</div>
+            <div class="form-row">
+              <label class="form-label">Badge Text (contoh: ✦ Singaraja, Bali ✦)</label>
+              <input class="form-input" id="f-badge" type="text">
+            </div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label class="form-label">Judul Utama</label>
+                <input class="form-input" id="f-h1" type="text" placeholder="Kopikirlah">
+              </div>
+              <div class="form-row">
+                <label class="form-label">Judul (teks emas)</label>
+                <input class="form-input" id="f-h1em" type="text" placeholder="Cafe">
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="form-label">Deskripsi</label>
+              <textarea class="form-input form-textarea" id="f-desc"></textarea>
+            </div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label class="form-label">Tombol 1 (kuning)</label>
+                <input class="form-input" id="f-btn1" type="text">
+              </div>
+              <div class="form-row">
+                <label class="form-label">Tombol 2 (outline)</label>
+                <input class="form-input" id="f-btn2" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHATSAPP PANEL -->
+        <div class="adm-panel" id="panel-whatsapp">
+          <div class="form-section">
+            <div class="form-section-title">Nomor WhatsApp</div>
+            <div class="form-row">
+              <label class="form-label">Nomor WA (format: 628xxxxxxxxx)</label>
+              <input class="form-input" id="f-wa-number" type="text" placeholder="628138251901">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Tampilan Nomor (format bebas)</label>
+              <input class="form-input" id="f-wa-display" type="text" placeholder="+62 813-8251-901">
+            </div>
+          </div>
+        </div>
+
+        <!-- LOKASI PANEL -->
+        <div class="adm-panel" id="panel-lokasi">
+          <div class="form-section">
+            <div class="form-section-title">Alamat & Maps</div>
+            <div class="form-row">
+              <label class="form-label">Alamat Lengkap</label>
+              <textarea class="form-input form-textarea" id="f-address" style="min-height:60px"></textarea>
+            </div>
+            <div class="form-row">
+              <label class="form-label">Google Maps URL</label>
+              <input class="form-input" id="f-maps-url" type="text">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Rating Google (contoh: 5.0 / 5.0)</label>
+              <input class="form-input" id="f-rating" type="text">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Komentar Rating</label>
+              <input class="form-input" id="f-rating-quote" type="text">
+            </div>
+          </div>
+          <div class="form-section">
+            <div class="form-section-title">Media Sosial</div>
+            <div class="form-row">
+              <label class="form-label">Instagram URL</label>
+              <input class="form-input" id="f-ig-url" type="text" placeholder="https://www.instagram.com/kopikirlahcafe/">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Instagram Handle (contoh: @kopikirlahcafe)</label>
+              <input class="form-input" id="f-ig-handle" type="text">
+            </div>
+            <div class="form-row">
+              <label class="form-label">TikTok URL</label>
+              <input class="form-input" id="f-tiktok-url" type="text">
+            </div>
+          </div>
+        </div>
+
+        <!-- UNGGULAN PANEL -->
+        <div class="adm-panel" id="panel-unggulan">
+          <div id="unggulan-items"></div>
+          <button class="add-item-btn" onclick="addUnggulan()">+ Tambah Item Unggulan</button>
+        </div>
+
+        <!-- MENU PANEL -->
+        <div class="adm-panel" id="panel-menu">
+          <div id="menu-categories"></div>
+        </div>
+
+        <!-- PASSWORD PANEL -->
+        <div class="adm-panel" id="panel-password">
+          <div class="form-section">
+            <div class="form-section-title">Ubah Kredensial Login</div>
+            <div class="form-row">
+              <label class="form-label">Password Lama</label>
+              <input class="form-input" id="f-old-pass" type="password">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Username Baru</label>
+              <input class="form-input" id="f-new-user" type="text">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Password Baru</label>
+              <input class="form-input" id="f-new-pass" type="password">
+            </div>
+            <div class="form-row">
+              <label class="form-label">Konfirmasi Password Baru</label>
+              <input class="form-input" id="f-confirm-pass" type="password">
+            </div>
+            <button class="adm-save-btn" onclick="changePassword()" style="margin-top:4px">Simpan Kredensial</button>
+            <div id="pass-msg" style="margin-top:10px;font-size:0.8rem;display:none"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Perubahan berhasil disimpan!</div>
+
+<script>
+// ========== DATA ==========
+var DATA = {
+  credentials: { user: 'admin', pass: 'kopikirlah2024' },
+  hero: {
+    badge: '✦ Singaraja, Bali ✦',
+    h1: 'Kopikirlah',
+    h1em: 'Cafe',
+    desc: 'Di jantung kota Singaraja, tempat kopi terbaik bertemu suasana modern. Nikmati espresso segar dan milkshake spesial kami.',
+    btn1: 'Lihat Menu Lengkap',
+    btn2: 'Lokasi Kami'
+  },
+  whatsapp: { number: '628138251901', display: '+62 813-8251-901' },
+  lokasi: {
+    address: 'Jl. Sri Kandi, Sambangan,\nKec. Sukasada, Kab. Buleleng, Bali',
+    maps_url: 'https://maps.google.com/?cid=13490423228644649994',
+    rating: '5.0 / 5.0',
+    rating_quote: 'Cool vibes, good music, coffee great taste',
+    ig_url: 'https://www.instagram.com/kopikirlahcafe/',
+    ig_handle: '@kopikirlahcafe',
+    tiktok_url: 'https://www.tiktok.com/@kopikirlahcafe'
+  },
+  unggulan: [
+    { emoji: '☕', nama: 'Butterscotch Latte', harga: 'Rp 17.000 / 20.000', deskripsi: 'Latte dengan aroma karamel mentega dan vanila. Busa lembut, rasa sempurna.' },
+    { emoji: '🧋', nama: 'Oreo Milk Shake', harga: 'Rp 15.000', deskripsi: 'Milkshake creamy dengan potongan Oreo renyah. Segar di siang yang panas.' },
+    { emoji: '🍽️', nama: 'Nasi Goreng Seafood', harga: 'Rp 15.000', deskripsi: 'Seafood segar dengan bumbu rempah khas yang menggugah selera.' },
+    { emoji: '🧇', nama: 'Waffle Coklat Keju', harga: 'Rp 17.500', deskripsi: 'Waffle renyah, coklat leleh, dan keju. Camilan favorit semua kalangan.' },
+    { emoji: '🍟', nama: 'Mix Plater', harga: 'Rp 25.000', deskripsi: 'Kombinasi sausage, chicken nugget, dan french fries crispy. Pas untuk berbagi.' },
+    { emoji: '🥑', nama: 'Alpokat Juice', harga: 'Rp 9.000', deskripsi: 'Jus alpokat segar, tekstur creamy alami. Minuman sehat pilihan pelanggan setia.' }
+  ],
+  menu: [
+    {
+      id: 'kopi', label: '☕ Kopi', emoji: '☕', nama: 'Espresso Base', hasVariants: true,
+      items: [
+        { nama: 'Latte', hot: '17.000', ice: '20.000' },
+        { nama: 'Cappucino', hot: '17.000', ice: '20.000' },
+        { nama: 'Americano', hot: '16.000', ice: '20.000' },
+        { nama: 'Espresso', hot: '15.000', ice: '' },
+        { nama: 'Vanilla Latte', hot: '17.000', ice: '20.000' },
+        { nama: 'Caramel Latte', hot: '17.000', ice: '20.000' },
+        { nama: 'Hazelnut Latte', hot: '18.000', ice: '20.000' },
+        { nama: 'Kopi Gula Aren', hot: '15.000', ice: '20.000' },
+        { nama: 'Butterscotch Latte', hot: '17.000', ice: '20.000' }
+      ]
+    },
+    {
+      id: 'teh', label: '🍵 Teh', emoji: '🍵', nama: 'Varian Tea', hasVariants: true,
+      items: [
+        { nama: 'Peach Tea', hot: '7.000', ice: '10.000' },
+        { nama: 'Lecy Tea', hot: '7.000', ice: '10.000' },
+        { nama: 'Lemon Tea', hot: '7.000', ice: '10.000' },
+        { nama: 'Teh Normal', hot: '5.000', ice: '8.000' }
+      ]
+    },
+    {
+      id: 'milk', label: '🥛 Milk based', emoji: '🥛', nama: 'Milk Based', hasVariants: true,
+      items: [
+        { nama: 'Matcha', hot: '10.000', ice: '12.500' },
+        { nama: 'Red Velvet', hot: '10.000', ice: '12.500' },
+        { nama: 'Coklat', hot: '10.000', ice: '12.500' },
+        { nama: 'Milo', hot: '10.000', ice: '12.500' },
+        { nama: 'Stroberi Milk Shake', hot: '15.000', ice: '' },
+        { nama: 'Vanilla Milk Shake', hot: '15.000', ice: '' },
+        { nama: 'Chocolate Milk Shake', hot: '15.000', ice: '' },
+        { nama: 'Oreo Milk Shake', hot: '15.000', ice: '' }
+      ]
+    },
+    {
+      id: 'juice', label: '🍊 Juice', emoji: '🍊', nama: 'Juice Based', hasVariants: false,
+      items: [
+        { nama: 'Orange', hot: '8.500', ice: '' },
+        { nama: 'Pinapple', hot: '8.500', ice: '' },
+        { nama: 'Manggo', hot: '8.500', ice: '' },
+        { nama: 'Dragon Fruit', hot: '9.000', ice: '' },
+        { nama: 'Strawberry', hot: '9.000', ice: '' },
+        { nama: 'Alpokat Juice', hot: '9.000', ice: '' }
+      ]
+    },
+    {
+      id: 'snack', label: '🍟 Snack chill', emoji: '🍟', nama: 'Snack Chill', hasVariants: false,
+      items: [
+        { nama: 'French Fries (Original / BBQ / Cheese)', hot: '10.000', ice: '' },
+        { nama: 'Kofte Salad Potato', hot: '35.000', ice: '' },
+        { nama: 'Chicken Nugget', hot: '15.000', ice: '' },
+        { nama: 'Onion Rings', hot: '10.000', ice: '' },
+        { nama: 'Sausage', hot: '10.000', ice: '' },
+        { nama: 'Mix Plater (Sausage, Nugget, Fries)', hot: '25.000', ice: '' },
+        { nama: 'Jamur Crispy', hot: '10.000', ice: '' }
+      ]
+    },
+    {
+      id: 'berat', label: '🍽️ Makanan berat', emoji: '🍽️', nama: 'Makanan Berat', hasVariants: false,
+      items: [
+        { nama: 'Nasi Goreng Biasa', hot: '10.000', ice: '' },
+        { nama: 'Nasi Goreng Ayam', hot: '12.500', ice: '' },
+        { nama: 'Nasi Goreng Seafood', hot: '15.000', ice: '' },
+        { nama: 'Mie Goreng Ayam', hot: '12.500', ice: '' },
+        { nama: 'Mie Goreng Seafood', hot: '15.000', ice: '' },
+        { nama: 'Mie Kuah Biasa', hot: '10.000', ice: '' },
+        { nama: 'Mie Kuah Telur', hot: '12.000', ice: '' },
+        { nama: 'Mie Kuah Sosis', hot: '13.500', ice: '' },
+        { nama: 'Mie Kuah Komplit', hot: '15.000', ice: '' }
+      ]
+    },
+    {
+      id: 'cina', label: '🥢 Makanan Cina', emoji: '🥢', nama: 'Makanan Cina', hasVariants: false,
+      items: [
+        { nama: 'Ayam Goreng Saus Mentega', hot: '20.000', ice: '' },
+        { nama: 'Kwetiau Goreng', hot: '15.000', ice: '' },
+        { nama: 'Ayam Cay Stamp', hot: '15.000', ice: '' },
+        { nama: 'Fuyunghai', hot: '15.000', ice: '' },
+        { nama: 'Ayam Goreng Saus Kecap', hot: '20.000', ice: '' }
+      ]
+    },
+    {
+      id: 'roti', label: '🥪 Varian snack', emoji: '🥪', nama: 'Varian Snack', hasVariants: false,
+      items: [
+        { nama: 'Roti Bakar Coklat Keju Susu', hot: '15.000', ice: '' },
+        { nama: 'Roti Bakar Coklat Susu', hot: '12.500', ice: '' },
+        { nama: 'Roti Bakar Keju Susu', hot: '12.500', ice: '' },
+        { nama: 'Roti Bakar Selai', hot: '12.500', ice: '' },
+        { nama: 'Roti Bakar Coco Crunchy', hot: '13.000', ice: '' },
+        { nama: 'Roti Bakar Tiramisu', hot: '14.000', ice: '' },
+        { nama: 'Roti Bakar Keju Kornet', hot: '15.000', ice: '' },
+        { nama: 'Roti Bakar Telur Keju', hot: '15.000', ice: '' },
+        { nama: 'Roti Bakar Kornet', hot: '13.000', ice: '' },
+        { nama: 'Pisang Coklat Keju', hot: '10.000', ice: '' },
+        { nama: 'Pisang Keju Susu', hot: '10.000', ice: '' },
+        { nama: 'Waffle Keju', hot: '15.000', ice: '' },
+        { nama: 'Waffle Coklat', hot: '15.000', ice: '' },
+        { nama: 'Waffle Coklat Keju', hot: '17.500', ice: '' },
+        { nama: 'Waffle Strawberry', hot: '15.000', ice: '' },
+        { nama: 'Waffle Original', hot: '12.500', ice: '' }
+      ]
+    }
+  ]
+};
+
+// ========== LOAD FROM STORAGE ==========
+function loadData() {
+  try {
+    var saved = localStorage.getItem('kopikirlah_data');
+    if (saved) DATA = JSON.parse(saved);
+  } catch(e) {}
+}
+
+function saveData() {
+  try { localStorage.setItem('kopikirlah_data', JSON.stringify(DATA)); } catch(e) {}
+}
+
+// ========== SITE RENDER ==========
+function renderSite() {
+  var h = DATA.hero, w = DATA.whatsapp, l = DATA.lokasi;
+  // Hero
+  document.getElementById('site-badge').textContent = h.badge;
+  document.getElementById('hero-h1-1').innerHTML = h.h1 + ' <em id="hero-h1-em">' + h.h1em + '</em>';
+  document.getElementById('hero-desc').textContent = h.desc;
+  document.getElementById('hero-btn1').textContent = h.btn1;
+  document.getElementById('hero-btn2').textContent = h.btn2;
+  // WA
+  var waUrl = 'https://wa.me/' + w.number;
+  ['wa-display-num','wa-display-num2','wa-display-num3'].forEach(function(id){
+    var el = document.getElementById(id); if(el) el.textContent = w.display;
+  });
+  ['wa-link-home','wa-link-menu','wa-link-lokasi'].forEach(function(id){
+    var el = document.getElementById(id); if(el) el.href = waUrl;
+  });
+  // Lokasi
+  var addrEl = document.getElementById('lokasi-address');
+  if(addrEl) addrEl.innerHTML = l.address.replace(/\n/g,'<br>');
+  var ratingEl = document.getElementById('lokasi-rating');
+  if(ratingEl) ratingEl.innerHTML = l.rating + '<br>"' + l.rating_quote + '"';
+  var mapsEl = document.getElementById('maps-link');
+  if(mapsEl) mapsEl.href = l.maps_url;
+  // Instagram
+  [['ig-link-footer','ig-handle-footer'],['ig-link-footer2','ig-handle-footer2'],['ig-link-footer3','ig-handle-footer3'],['ig-link-lokasi',null]].forEach(function(pair){
+    var a = document.getElementById(pair[0]);
+    if(a) { a.href = l.ig_url; if(pair[1]) { var s = document.getElementById(pair[1]); if(s) s.textContent = l.ig_handle; } else { a.textContent = l.ig_handle; } }
+  });
+  // Featured
+  renderFeatured();
+  renderMenuPage();
+}
+
+function renderFeatured() {
+  var grid = document.getElementById('featured-grid');
+  if(!grid) return;
+  grid.innerHTML = DATA.unggulan.map(function(u){
+    return '<div class="feat-card"><div class="feat-icon">'+u.emoji+'</div><div class="feat-name">'+u.nama+'</div><div class="feat-price">'+u.harga+'</div><div class="feat-desc">'+u.deskripsi+'</div></div>';
+  }).join('');
+}
+
+function renderMenuPage() {
+  var tabs = document.getElementById('menu-tabs');
+  var list = document.getElementById('menu-list');
+  if(!tabs || !list) return;
+  tabs.innerHTML = '<button class="tab active" onclick="filterMenu(\'all\',this)">Semua menu</button>' +
+    DATA.menu.map(function(c){ return '<button class="tab" onclick="filterMenu(\''+c.id+'\',this)">'+c.label+'</button>'; }).join('');
+  list.innerHTML = DATA.menu.map(function(c){
+    var rows = '';
+    if(c.hasVariants) {
+      rows = '<div class="price-header"><span class="ph-name">Menu</span><span class="ph-hot">Hot</span><span class="ph-ice">Ice</span></div>';
+      rows += c.items.map(function(it){
+        return '<div class="mrow s"><span class="mrow-name">'+it.nama+'</span><span class="mrow-price r">'+it.hot+'</span><span class="mrow-price">'+it.ice+'</span></div>';
+      }).join('');
+    } else {
+      rows = c.items.map(function(it){
+        return '<div class="mrow s"><span class="mrow-name">'+it.nama+'</span><span class="mrow-price r">'+it.hot+'</span></div>';
+      }).join('');
+    }
+    return '<div class="menu-card" data-cat="'+c.id+'"><div class="menu-cat-header"><h3>'+c.emoji+' '+c.nama+'</h3></div><div class="menu-table">'+rows+'</div></div>';
+  }).join('');
+}
+
+function filterMenu(cat, btn) {
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.menu-card').forEach(function(card){
+    card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
+  });
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('page-' + name).classList.add('active');
+  if(name === 'menu') document.getElementById('nav-menu').classList.add('active');
+  if(name === 'lokasi') document.getElementById('nav-lokasi').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ========== ADMIN ==========
+function openAdmin() {
+  document.getElementById('admin-overlay').classList.add('show');
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+  document.getElementById('login-err').style.display = 'none';
+}
+
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('show');
+  document.getElementById('admin-dash').classList.remove('show');
+  document.getElementById('admin-login').style.display = 'flex';
+}
+
+function doLogin() {
+  var u = document.getElementById('login-user').value.trim();
+  var p = document.getElementById('login-pass').value;
+  if(u === DATA.credentials.user && p === DATA.credentials.pass) {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-dash').classList.add('show');
+    loadAdminForms();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+
+function showAdmPanel(name) {
+  document.querySelectorAll('.adm-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.adm-item').forEach(function(i){ i.classList.remove('active'); });
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('adm-nav-' + name).classList.add('active');
+  var titles = { hero:'Hero & Beranda', whatsapp:'WhatsApp', lokasi:'Lokasi & Sosmed', unggulan:'Menu Unggulan', menu:'Menu Lengkap', password:'Ubah Password' };
+  document.getElementById('adm-title').textContent = titles[name] || name;
+}
+
+function loadAdminForms() {
+  var h = DATA.hero, w = DATA.whatsapp, l = DATA.lokasi;
+  document.getElementById('f-badge').value = h.badge;
+  document.getElementById('f-h1').value = h.h1;
+  document.getElementById('f-h1em').value = h.h1em;
+  document.getElementById('f-desc').value = h.desc;
+  document.getElementById('f-btn1').value = h.btn1;
+  document.getElementById('f-btn2').value = h.btn2;
+  document.getElementById('f-wa-number').value = w.number;
+  document.getElementById('f-wa-display').value = w.display;
+  document.getElementById('f-address').value = l.address;
+  document.getElementById('f-maps-url').value = l.maps_url;
+  document.getElementById('f-rating').value = l.rating;
+  document.getElementById('f-rating-quote').value = l.rating_quote;
+  document.getElementById('f-ig-url').value = l.ig_url;
+  document.getElementById('f-ig-handle').value = l.ig_handle;
+  document.getElementById('f-tiktok-url').value = l.tiktok_url;
+  renderAdmUnggulan();
+  renderAdmMenu();
+}
+
+// UNGGULAN ADMIN
+function renderAdmUnggulan() {
+  var cont = document.getElementById('unggulan-items');
+  cont.innerHTML = DATA.unggulan.map(function(u,i){
+    return '<div class="unggulan-row">'+
+      '<div class="unggulan-row-top">'+
+      '<input class="form-input ung-emoji" value="'+escHtml(u.emoji)+'" placeholder="Emoji" oninput="DATA.unggulan['+i+'].emoji=this.value">'+
+      '<input class="form-input ung-name" value="'+escHtml(u.nama)+'" placeholder="Nama Menu" oninput="DATA.unggulan['+i+'].nama=this.value">'+
+      '<input class="form-input ung-price" value="'+escHtml(u.harga)+'" placeholder="Harga" oninput="DATA.unggulan['+i+'].harga=this.value">'+
+      '<button class="ung-del" onclick="delUnggulan('+i+')">Hapus</button>'+
+      '</div>'+
+      '<div class="ung-desc">'+
+      '<input class="form-input" value="'+escHtml(u.deskripsi)+'" placeholder="Deskripsi" oninput="DATA.unggulan['+i+'].deskripsi=this.value">'+
+      '</div>'+
+      '</div>';
+  }).join('');
+}
+
+function addUnggulan() {
+  DATA.unggulan.push({ emoji: '☕', nama: 'Menu Baru', harga: 'Rp 0', deskripsi: 'Deskripsi menu' });
+  renderAdmUnggulan();
+}
+
+function delUnggulan(i) {
+  DATA.unggulan.splice(i, 1);
+  renderAdmUnggulan();
+}
+
+// MENU ADMIN
+function renderAdmMenu() {
+  var cont = document.getElementById('menu-categories');
+  cont.innerHTML = DATA.menu.map(function(cat, ci){
+    var itemRows = cat.items.map(function(it, ii){
+      if(cat.hasVariants) {
+        return '<div class="menu-item-row">'+
+          '<input class="form-input menu-item-name" value="'+escHtml(it.nama)+'" placeholder="Nama" oninput="DATA.menu['+ci+'].items['+ii+'].nama=this.value">'+
+          '<input class="form-input menu-item-price" value="'+escHtml(it.hot)+'" placeholder="Hot/Normal" oninput="DATA.menu['+ci+'].items['+ii+'].hot=this.value" style="max-width:100px">'+
+          '<input class="form-input menu-item-price" value="'+escHtml(it.ice)+'" placeholder="Ice" oninput="DATA.menu['+ci+'].items['+ii+'].ice=this.value" style="max-width:90px">'+
+          '<button class="menu-item-del" onclick="delMenuItem('+ci+','+ii+')">Hapus</button>'+
+          '</div>';
+      } else {
+        return '<div class="menu-item-row">'+
+          '<input class="form-input menu-item-name" value="'+escHtml(it.nama)+'" placeholder="Nama" oninput="DATA.menu['+ci+'].items['+ii+'].nama=this.value" style="flex:3">'+
+          '<input class="form-input menu-item-price" value="'+escHtml(it.hot)+'" placeholder="Harga" oninput="DATA.menu['+ci+'].items['+ii+'].hot=this.value">'+
+          '<button class="menu-item-del" onclick="delMenuItem('+ci+','+ii+')">Hapus</button>'+
+          '</div>';
+      }
+    }).join('');
+    return '<div class="cat-section">'+
+      '<div class="cat-header" onclick="toggleCat(\'cat-body-'+ci+'\',\'cat-tog-'+ci+'\')">'+
+      '<span class="cat-header-emoji">'+cat.emoji+'</span>'+
+      '<span class="cat-header-name">'+cat.nama+' ('+cat.items.length+' item)</span>'+
+      '<span class="cat-toggle" id="cat-tog-'+ci+'">▼</span>'+
+      '</div>'+
+      '<div class="cat-body" id="cat-body-'+ci+'">'+
+      '<div class="cat-has-variants">'+
+      '<input type="checkbox" id="chk-var-'+ci+'" '+(cat.hasVariants?'checked':'')+' onchange="DATA.menu['+ci+'].hasVariants=this.checked;renderAdmMenu()">'+
+      '<label for="chk-var-'+ci+'">Menu punya varian Hot/Ice</label>'+
+      '</div>'+
+      itemRows+
+      '<button class="add-item-btn" onclick="addMenuItem('+ci+')">+ Tambah Item</button>'+
+      '</div>'+
+      '</div>';
+  }).join('');
+}
+
+function toggleCat(bodyId, togId) {
+  var body = document.getElementById(bodyId);
+  var tog = document.getElementById(togId);
+  body.classList.toggle('open');
+  tog.classList.toggle('open');
+}
+
+function addMenuItem(ci) {
+  DATA.menu[ci].items.push({ nama: 'Menu Baru', hot: '10.000', ice: '' });
+  renderAdmMenu();
+  // reopen
+  var bodyId = 'cat-body-' + ci;
+  var body = document.getElementById(bodyId);
+  if(body && !body.classList.contains('open')) { body.classList.add('open'); document.getElementById('cat-tog-'+ci).classList.add('open'); }
+}
+
+function delMenuItem(ci, ii) {
+  DATA.menu[ci].items.splice(ii, 1);
+  renderAdmMenu();
+}
+
+// SAVE
+function saveAll() {
+  // Read forms
+  DATA.hero = {
+    badge: document.getElementById('f-badge').value,
+    h1: document.getElementById('f-h1').value,
+    h1em: document.getElementById('f-h1em').value,
+    desc: document.getElementById('f-desc').value,
+    btn1: document.getElementById('f-btn1').value,
+    btn2: document.getElementById('f-btn2').value
+  };
+  DATA.whatsapp = {
+    number: document.getElementById('f-wa-number').value,
+    display: document.getElementById('f-wa-display').value
+  };
+  DATA.lokasi = {
+    address: document.getElementById('f-address').value,
+    maps_url: document.getElementById('f-maps-url').value,
+    rating: document.getElementById('f-rating').value,
+    rating_quote: document.getElementById('f-rating-quote').value,
+    ig_url: document.getElementById('f-ig-url').value,
+    ig_handle: document.getElementById('f-ig-handle').value,
+    tiktok_url: document.getElementById('f-tiktok-url').value
+  };
+  saveData();
+  renderSite();
+  var btn = document.getElementById('adm-save-btn');
+  btn.classList.add('saved');
+  btn.textContent = '✓ Tersimpan!';
+  setTimeout(function(){ btn.classList.remove('saved'); btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Simpan Perubahan'; }, 2500);
+  showToast();
+}
+
+function changePassword() {
+  var oldP = document.getElementById('f-old-pass').value;
+  var newU = document.getElementById('f-new-user').value.trim();
+  var newP = document.getElementById('f-new-pass').value;
+  var confP = document.getElementById('f-confirm-pass').value;
+  var msg = document.getElementById('pass-msg');
+  msg.style.display = 'block';
+  if(oldP !== DATA.credentials.pass) { msg.style.color='#f87171'; msg.textContent='Password lama salah!'; return; }
+  if(newP !== confP) { msg.style.color='#f87171'; msg.textContent='Konfirmasi password tidak cocok!'; return; }
+  if(newP.length < 6) { msg.style.color='#f87171'; msg.textContent='Password minimal 6 karakter!'; return; }
+  if(newU) DATA.credentials.user = newU;
+  DATA.credentials.pass = newP;
+  saveData();
+  msg.style.color='#4ade80';
+  msg.textContent='Kredensial berhasil diubah!';
+  document.getElementById('f-old-pass').value='';
+  document.getElementById('f-new-pass').value='';
+  document.getElementById('f-confirm-pass').value='';
+}
+
+function showToast() {
+  var t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+
+function escHtml(str) {
+  if(!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ========== INIT ==========
+loadData();
+renderSite();
+</script>
+</body>
+</html>
