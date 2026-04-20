@@ -250,8 +250,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     <h1 id="hero-h1-1">Kopikirlah <em id="hero-h1-em">Cafe</em></h1>
     <p id="hero-desc">Di jantung kota Singaraja, tempat kopi terbaik bertemu suasana modern. Nikmati espresso segar dan milkshake spesial kami.</p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="showPage('menu')" id="hero-btn1">Lihat Menu Lengkap</button>
-      <button class="btn-outline" onclick="showPage('lokasi')" id="hero-btn2">Lokasi Kami</button>
+      <button class="btn-primary" id="hero-btn1">Lihat Menu Lengkap</button>
+      <button class="btn-outline" id="hero-btn2">Lokasi Kami</button>
     </div>
   </div>
 
@@ -743,8 +743,12 @@ function renderSite() {
   document.getElementById('site-badge').textContent = h.badge;
   document.getElementById('hero-h1-1').innerHTML = h.h1 + ' <em id="hero-h1-em">' + h.h1em + '</em>';
   document.getElementById('hero-desc').textContent = h.desc;
-  document.getElementById('hero-btn1').textContent = h.btn1;
-  document.getElementById('hero-btn2').textContent = h.btn2;
+  var b1 = document.getElementById('hero-btn1');
+  b1.textContent = h.btn1;
+  b1.onclick = function(){ showPage('menu'); };
+  var b2 = document.getElementById('hero-btn2');
+  b2.textContent = h.btn2;
+  b2.onclick = function(){ showPage('lokasi'); };
   // WA
   var waUrl = 'https://wa.me/' + w.number;
   ['wa-display-num','wa-display-num2','wa-display-num3'].forEach(function(id){
@@ -1020,4 +1024,30 @@ function downloadUpdatedHTML() {
   var newPass = DATA.credentials.pass;
   html = html.replace(
     /credentials:\s*\{\s*user:\s*'[^']*',\s*pass:\s*'[^']*'\s*\}/,
-    "credentials: { user: '" + newUser + "', pass: '" + newPass 
+    "credentials: { user: '" + newUser + "', pass: '" + newPass + "' }"
+  );
+  var blob = new Blob([html], { type: 'text/html' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'kopikirlah-cafe.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function showToast() {
+  var t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+
+function escHtml(str) {
+  if(!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ========== INIT ==========
+loadData();
+renderSite();
+</script>
+</body>
+</html>
